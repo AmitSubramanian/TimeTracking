@@ -1,0 +1,57 @@
+﻿@using TimeTracking.ViewModels
+
+@model WeeklyReport
+@{
+    ViewData["Title"] = "Weekly Report";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <table class="table">
+                <tr>
+                    <th class="col-md-1">Wk @Model.WorkWeek</th>
+                    <th class="col-md-1">Mon</th>
+                    <th class="col-md-1">Tue</th>
+                    <th class="col-md-1">Wed</th>
+                    <th class="col-md-1">Thu</th>
+                    <th class="col-md-1">Fri</th>
+                    <th class="col-md-1">Sat</th>
+                    <th class="col-md-1">Sun</th>
+                    <th class="col-md-1">Hours</th>
+                    <th class="col-md-1">Breaks</th>
+                </tr>
+                @if (Model.WeeklyReportRows.Count() > 0)
+                {
+                    @foreach (var r in Model.WeeklyReportRows)
+                    {
+                        <tr>
+                            <td>
+                                @(r.EmployeeName + (r.EmployeeTypeCode == 'N' ? "(" + r.EmployeeTypeCode + ")" : ""))
+                            </td>
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <td>
+                                    @if (r.HoursWorked[i] > 0)
+                                    {
+                                        @r.HoursWorked[i]
+                                    }
+                                </td>
+                            }
+                            <td>@r.TotalHoursWorked</td>
+                            <td>@(r.TotalBreaksEarned.Hours.ToString() + ":" + r.TotalBreaksEarned.Minutes.ToString("D2"))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10">No employees</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

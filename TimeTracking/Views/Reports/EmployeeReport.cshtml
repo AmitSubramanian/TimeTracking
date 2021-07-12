@@ -1,0 +1,37 @@
+﻿@using TimeTracking.ViewModels
+
+@model EmployeeReport
+@{
+    ViewData["Title"] = "Employee Report";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <table class="table">
+                <tr>
+                    <td class="col-md-2">Name</td>
+                    <td class="col-md-4">@Model.EmployeeName</td>
+                </tr>
+                <tr>
+                    <td class="col-md-2">Employee Type</td>
+                    <td class="col-md-4">@Model.EmployeeType</td>
+                </tr>
+                <tr>
+                    <td class="col-md-2">Work Week</td>
+                    <td class="col-md-4">@Model.WorkWeek</td>
+                </tr>
+                <tr>
+                    <td class="col-md-2">Hours Worked</td>
+                    <td class="col-md-4">@Model.HoursWorked</td>
+                </tr>
+                <tr>
+                    <td class="col-md-2">Breaks Earned</td>
+                    <td class="col-md-4">@(Model.BreaksEarned.Hours.ToString() + ":" + Model.BreaksEarned.Minutes.ToString("D2"))</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
